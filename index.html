@@ -15,6 +15,8 @@
             --black: #000000;
             --yellow: #facc15;
             --white: #ffffff;
+            --green: #22c55e;
+            --red: #ef4444;
             --gray-deep: #0f0f0f;
         }
         
@@ -24,7 +26,7 @@
             color: var(--white); 
             scroll-behavior: smooth;
             margin: 0;
-            font-size: 1.25rem; /* Incremento global de legibilidad */
+            font-size: 1.25rem; 
             line-height: 1.8;
         }
 
@@ -36,13 +38,14 @@
             font-weight: 700;
         }
 
-        /* Tamaños de títulos escalados */
-        h1 { font-size: 5rem; }
-        h2 { font-size: 3.5rem; }
-        h3 { font-size: 2.5rem; }
+        h1 { font-size: clamp(3rem, 8vw, 6rem); }
+        h2 { font-size: clamp(2.5rem, 6vw, 4rem); }
+        h3 { font-size: clamp(2rem, 5vw, 3rem); }
         
         .text-body { color: var(--white); font-weight: 300; }
         .highlight { color: var(--yellow); font-weight: 700; }
+        .text-green { color: var(--green); }
+        .text-red { color: var(--red); }
         
         /* Containers */
         .card-noir { 
@@ -57,14 +60,14 @@
             background: rgba(255, 255, 255, 0.05); 
             border-left: 6px solid var(--yellow); 
             padding: 2.5rem; 
-            margin-bottom: 3rem; 
+            margin-bottom: 3.5rem; 
             font-size: 1.15rem; 
         }
         .insight-box { 
             background: rgba(250, 204, 21, 0.07); 
             border: 1px dashed var(--yellow); 
             padding: 3rem; 
-            margin-top: 3rem; 
+            margin-top: 3.5rem; 
             font-size: 1.2rem;
         }
 
@@ -87,10 +90,11 @@
         .midium-link { border-bottom: 1px solid transparent; transition: 0.3s; }
         .midium-link:hover { border-color: var(--yellow); color: var(--yellow); }
 
+        .delta-indicator { font-weight: 700; font-size: 0.9rem; margin-left: 8px; }
+
         @media (max-width: 1024px) {
-            h1 { font-size: 3.5rem; }
-            h2 { font-size: 2.5rem; }
-            body { font-size: 1.15rem; }
+            .card-noir { padding: 2rem; }
+            .module-header { padding-left: 1.5rem; margin-bottom: 3rem; }
         }
     </style>
 </head>
@@ -135,8 +139,8 @@
             <div class="module-header">
                 <h2 class="italic uppercase">01. Auditoría de Percepción</h2>
                 <div class="interpretation-guide">
-                    <p class="font-bold text-yellow mb-3 uppercase tracking-widest">Funcionamiento & Interpretación:</p>
-                    <p class="text-white opacity-90 leading-loose">Este módulo analiza los campos semánticos y términos de búsqueda que dominan la conversación financiera en México. Los datos se interpretan cruzando el <strong>Sentiment Index</strong> (donde valores negativos representan miedos del mercado a resolver) con el <strong>Giro Editorial</strong>, que es la instrucción creativa para que el podcast de AMEFAC neutralice el miedo y establezca autoridad inmediata.</p>
+                    <p class="font-bold text-yellow mb-3 uppercase tracking-widest">¿Cómo interpretar este módulo?</p>
+                    <p class="text-white opacity-90 leading-loose">Esta tabla cruza el volumen de búsqueda con el sentimiento real de los directivos. El <strong>Sentiment Index</strong> muestra la polaridad de la opinión pública (Verde: Oportunidad de marca; Rojo: Crisis o miedo del mercado). El <strong>Giro Editorial</strong> es la instrucción técnica para que el podcast de AMEFAC resuelva esos dolores específicos.</p>
                 </div>
             </div>
             
@@ -158,8 +162,8 @@
             </div>
 
             <div class="insight-box">
-                <h5 class="text-2xl mb-6 italic uppercase tracking-widest">Strategic Insight de Datos:</h5>
-                <p class="text-white font-light leading-relaxed">El cruce de datos revela que el término <strong>"Crédito Bancario"</strong> sufre una fatiga por sentimiento negativo (-0.78), mientras que <strong>"Nearshoring"</strong> dispara el interés en liquidez inmediata. El podcast debe atacar la "frustración bancaria" como gancho emocional inicial para presentar el factoraje como el alivio estratégico natural del ciclo industrial actual.</p>
+                <h5 class="text-2xl mb-6 italic uppercase tracking-widest">Strategic Insight:</h5>
+                <p class="text-white font-light leading-relaxed">El término <strong>"Crédito Bancario"</strong> presenta un sentimiento negativo profundo debido al alza de tasas. Esto posiciona al factoraje como la alternativa lógica de "capital libre de deuda". El podcast debe capitalizar este descontento bancario para presentar el factoraje como el estándar de oro de la nueva liquidez.</p>
             </div>
         </section>
 
@@ -170,14 +174,14 @@
                     <h2 class="text-4xl font-bold italic uppercase">02-A. Radar de Clusters</h2>
                 </div>
                 <div class="interpretation-guide">
-                    <p class="font-bold text-yellow mb-3 uppercase tracking-widest">Interpretación del Radar:</p>
-                    <p class="text-white opacity-90 leading-loose">Visualizamos la madurez de los temas clave. La <strong>Saturación de Data</strong> indica qué tan competido está el tema; la <strong>Autoridad</strong> muestra dónde AMEFAC ya es líder. Debemos priorizar los clusters donde el <strong>Potencial Viral</strong> sea alto para generar fragmentos cortos de video que alimenten el embudo de captación.</p>
+                    <p class="font-bold text-yellow mb-3 uppercase tracking-widest">Análisis del Radar:</p>
+                    <p class="text-white opacity-90 leading-loose">Visualizamos la madurez de los clusters temáticos. Los clusters con mayor área en el eje de <strong>Autoridad</strong> son donde el podcast debe establecer su cátedra, mientras que los de alto <strong>Potencial Viral</strong> son ideales para <em>hooks</em> y clips de redes sociales.</p>
                 </div>
                 <div class="card-noir h-[600px] flex flex-col items-center">
                     <canvas id="radarMaturity"></canvas>
                 </div>
                 <div class="insight-box">
-                    <p class="text-white font-light italic">Insight del Radar: El cluster "Finanzas Corporativas" tiene el mayor índice de autoridad pero baja viralidad. Estrategia: Utilizar el prestigio del cluster corporativo para validar los temas virales de PyME, creando un "Efecto Halo" de seguridad institucional.</p>
+                    <p class="text-white font-light italic">Insight del Radar: El cluster de "Nearshoring" muestra una autoridad incipiente pero un potencial viral masivo. AMEFAC tiene la oportunidad de adueñarse de este territorio semántico antes que la competencia bancaria.</p>
                 </div>
             </div>
 
@@ -186,14 +190,14 @@
                     <h2 class="text-4xl font-bold italic uppercase">02-B. Evolución de Interés</h2>
                 </div>
                 <div class="interpretation-guide">
-                    <p class="font-bold text-yellow mb-3 uppercase tracking-widest">Interpretación de Líneas de Tiempo:</p>
-                    <p class="text-white opacity-90 leading-loose">Comparamos el crecimiento predictivo del factoraje (amarillo) frente a alternativas tradicionales. La divergencia a partir de 2024 muestra un cambio de paradigma: el mercado busca fluidez sobre endeudamiento. Este gráfico justifica la urgencia de lanzar el podcast para capturar el pico de interés proyectado para el cuarto trimestre de 2026.</p>
+                    <p class="font-bold text-yellow mb-3 uppercase tracking-widest">Análisis de Tendencia:</p>
+                    <p class="text-white opacity-90 leading-loose">Comparamos el crecimiento del interés por factoraje (Amarillo) frente al estancamiento del crédito tradicional (Línea punteada). La divergencia predice que para el cierre de 2026, el factoraje será el término de búsqueda número uno en soluciones financieras B2B en México.</p>
                 </div>
                 <div class="card-noir h-[600px]">
                     <canvas id="lineInterest"></canvas>
                 </div>
                 <div class="insight-box">
-                    <p class="text-white font-light italic">Insight Evolutivo: Mientras el interés en Fintech tradicionales se estabiliza, el factoraje especializado crece un 125%. La audiencia está madurando y busca soluciones de "Capital Real" en lugar de "Deuda Flexible".</p>
+                    <p class="text-white font-light italic">Insight Evolutivo: El interés digital en factoraje especializado ha crecido un 125% tras la crisis de tasas de 2024. El mercado ya no busca "préstamos", busca "flujo operativo libre".</p>
                 </div>
             </div>
         </section>
@@ -203,24 +207,24 @@
             <div class="module-header">
                 <h2 class="italic uppercase">03. Superioridad Funcional</h2>
                 <div class="interpretation-guide">
-                    <p class="font-bold text-yellow mb-3 uppercase tracking-widest">Funcionamiento del Módulo:</p>
-                    <p class="text-white opacity-90 leading-loose">Este análisis visual compara el factoraje contra el crédito bancario en 5 dimensiones operativas. Un valor cercano al 100% (borde exterior) indica superioridad absoluta. Es la herramienta de ventas definitiva para que el presentador del podcast argumente el valor de AMEFAC.</p>
+                    <p class="font-bold text-yellow mb-3 uppercase tracking-widest">Cómo interpretar la Superioridad:</p>
+                    <p class="text-white opacity-90 leading-loose">Este radar táctico compara las capacidades operativas. Los puntos donde el área amarilla toca el borde representan una superioridad del 100% sobre la banca tradicional. Este es el guion técnico del podcast para cerrar ventas institucionales.</p>
                 </div>
             </div>
             <div class="card-noir grid lg:grid-cols-2 gap-24 items-center">
                 <div class="space-y-12">
                     <div class="space-y-10">
                         <div class="border-l-4 border-yellow pl-8">
-                            <h4 class="text-yellow text-3xl mb-4 italic">Inmediatez Operativa (Velocidad)</h4>
-                            <p class="text-white text-xl font-light opacity-90">La superioridad se basa en el tiempo de respuesta. El factoraje opera en un ciclo de <strong>24-48 horas</strong>, comparado con los 45-90 días del crédito bancario. Interpretación: Resolvemos crisis de flujo en tiempo real, permitiendo a la empresa capturar descuentos por pronto pago con proveedores.</p>
+                            <h4 class="text-yellow text-3xl mb-4 italic">Inmediatez Operativa</h4>
+                            <p class="text-white text-xl font-light opacity-90">El ciclo bancario es de 45 a 90 días; el factoraje de AMEFAC liquida en <strong>24-48 horas</strong>. Esto permite capturar oportunidades de mercado en tiempo real sin perder inventarios críticos.</p>
                         </div>
                         <div class="border-l-4 border-white pl-8">
-                            <h4 class="text-white text-3xl mb-4 italic">Off-Balance Sheet (Cero Deuda)</h4>
-                            <p class="text-white text-xl font-light opacity-90">Al ser una venta de activos y no un pasivo bancario, el factoraje no afecta el apalancamiento neto. Esto permite a la empresa mantener sus líneas de crédito bancarias intactas para inversiones de capital a largo plazo.</p>
+                            <h4 class="text-white text-3xl mb-4 italic">Balance Off-Sheet (Sin Deuda)</h4>
+                            <p class="text-white text-xl font-light opacity-90">Al ser una venta de activos, no afecta el apalancamiento financiero. La empresa mantiene sus líneas de crédito bancarias intactas para inversiones de capital estratégico.</p>
                         </div>
                         <div class="border-l-4 border-yellow pl-8">
-                            <h4 class="text-yellow text-3xl mb-4 italic">Escalabilidad Ilimitada</h4>
-                            <p class="text-white text-xl font-light opacity-90">A diferencia del crédito, que tiene un techo rígido basado en el historial, el factoraje crece con las ventas. Mientras más factures, más liquidez tienes disponible. No hay un límite estático.</p>
+                            <h4 class="text-yellow text-3xl mb-4 italic">Cero Colateral Real</h4>
+                            <p class="text-white text-xl font-light opacity-90">Eliminamos el requisito de garantías hipotecarias. El respaldo es la factura misma y la solvencia del deudor, democratizando el capital para PyMEs en expansión.</p>
                         </div>
                     </div>
                 </div>
@@ -235,16 +239,16 @@
                     <h2 class="text-4xl font-bold italic uppercase">04-A. Drivers Emocionales</h2>
                 </div>
                 <div class="interpretation-guide">
-                    <p class="text-white opacity-90 leading-loose italic">Este desglose permite al equipo creativo de guionistas identificar el "gancho emocional" de cada episodio. No vendemos instrumentos financieros; vendemos soluciones al conflicto humano del empresario.</p>
+                    <p class="text-white opacity-90 leading-loose italic">Detrás de la decisión de un CFO hay un disparador psicológico. El podcast debe atacar estas emociones para lograr la conversión del oyente.</p>
                 </div>
                 <div class="space-y-10">
                     <div class="card-noir border-l-8 border-yellow p-12 shadow-2xl">
-                        <h4 class="text-yellow font-bold text-3xl italic mb-6">Paz Mental: Eliminación de Ansiedad</h4>
-                        <p class="text-white text-xl font-light leading-relaxed"><strong>Instrucción Editorial:</strong> El podcast debe enfatizar la tranquilidad de tener la nómina cubierta el viernes sin depender del pago de un cliente. Es mover al oyente del "Modo Supervivencia" al "Modo Estratégico".</p>
+                        <h4 class="text-yellow font-bold text-3xl italic mb-6 uppercase">Control Total vs Ansiedad</h4>
+                        <p class="text-white text-xl font-light leading-relaxed">El miedo a no cubrir la nómina o perder un proveedor clave es el mayor dolor. El factoraje ofrece <strong>Paz Mental</strong> inmediata, devolviendo al líder el control del tiempo en lugar de ser esclavo del calendario de cobro.</p>
                     </div>
                     <div class="card-noir border-l-8 border-white p-12 shadow-2xl">
-                        <h4 class="text-white font-bold text-3xl italic mb-6">Estatus: Validación Institucional</h4>
-                        <p class="text-white text-xl font-light leading-relaxed"><strong>Instrucción Editorial:</strong> Ser proveedor de una gran empresa y descontar su factura valida al pequeño empresario como un "jugador serio". El podcast debe resaltar historias donde el factoraje fue el puente hacia las ligas mayores.</p>
+                        <h4 class="text-white font-bold text-3xl italic mb-6 uppercase">Estatus de Proveedor AAA</h4>
+                        <p class="text-white text-xl font-light leading-relaxed">Poder descontar facturas de corporativos globales otorga al dueño de PyME una <strong>Validación de Estatus</strong> comercial, posicionándolo como un jugador serio y solvente en su industria.</p>
                     </div>
                 </div>
             </div>
@@ -254,22 +258,22 @@
                     <h2 class="text-4xl font-bold italic uppercase">04-B. Micro-Nichos Emergentes</h2>
                 </div>
                 <div class="interpretation-guide">
-                    <p class="text-white opacity-90 leading-loose italic">Identificación de áreas con baja competencia y alta demanda proyectada basada en evidencia numérica de mercado 2026.</p>
+                    <p class="text-white opacity-90 leading-loose italic">Áreas de oportunidad detectadas con evidencia numérica de mercado para 2026.</p>
                 </div>
                 <div class="grid grid-cols-1 gap-12">
                     <div class="card-noir border-t-8 border-yellow">
                         <div class="flex justify-between items-start mb-8">
-                            <h5 class="text-3xl font-bold italic">Nearshoring Manufacturing Hubs</h5>
-                            <span class="bg-yellow text-black px-6 py-2 text-sm font-black">+48% CAGR</span>
+                            <h5 class="text-3xl font-bold italic">Nearshoring Frontier Hubs</h5>
+                            <span class="bg-yellow text-black px-6 py-2 text-sm font-black text-green">+52% CAGR</span>
                         </div>
-                        <p class="text-white text-xl font-light mb-6 opacity-90 leading-relaxed">La relocalización industrial genera desfases de flujo críticos. <strong>Evidencia Numérica:</strong> El 42% de los nuevos proveedores industriales en México reportan plazos de cobro superiores a 120 días, creando un mercado direccionable de $15B USD anuales para factoraje.</p>
+                        <p class="text-white text-xl font-light mb-6 opacity-90 leading-relaxed"><strong>Evidencia Numérica:</strong> El 45% de las empresas de logística en Tijuana y Monterrey operan con márgenes de flujo menores a 30 días. El factoraje es su única vía de escalabilidad para surtir al mercado de EE.UU.</p>
                     </div>
                     <div class="card-noir border-t-8 border-white">
                         <div class="flex justify-between items-start mb-8">
-                            <h5 class="text-3xl font-bold italic">ESG-Driven Factoring</h5>
-                            <span class="bg-white text-black px-6 py-2 text-sm font-black">Market Cap 35B</span>
+                            <h5 class="text-3xl font-bold italic">ESG Sustainable Factoring</h5>
+                            <span class="bg-white text-black px-6 py-2 text-sm font-black text-green">$42B Market</span>
                         </div>
-                        <p class="text-white text-xl font-light mb-6 opacity-90 leading-relaxed">Empresas buscan mejorar sus scores de sostenibilidad mediante sus proveedores. <strong>Evidencia Numérica:</strong> Inversionistas institucionales han incrementado en un 60% la demanda de instrumentos ligados a KPIs ambientales en México.</p>
+                        <p class="text-white text-xl font-light mb-6 opacity-90 leading-relaxed"><strong>Evidencia Numérica:</strong> Inversionistas institucionales están inyectando liquidez masiva a instrumentos que auditen la sostenibilidad de la cadena de suministro. AMEFAC es el garante natural de este proceso.</p>
                     </div>
                 </div>
             </div>
@@ -282,23 +286,23 @@
                     <h2 class="text-4xl font-bold italic uppercase">05-A. Interés Regional Detallado</h2>
                 </div>
                 <div class="interpretation-guide">
-                    <p class="text-white opacity-90 leading-loose">Priorización geográfica del presupuesto de marketing. El podcast debe adaptar sus "casos de éxito" según la vocación económica de cada región ganadora.</p>
+                    <p class="text-white opacity-90 leading-loose">Guía para la segmentación de pauta y selección de invitados según el motor económico de cada región ganadora en volumen de búsqueda.</p>
                 </div>
                 <div class="card-noir h-[500px] mb-12 flex flex-col justify-center">
                     <canvas id="barRegional"></canvas>
                 </div>
                 <div class="space-y-10">
                     <div class="border-l-4 border-yellow pl-10">
-                        <h6 class="font-bold text-yellow text-2xl mb-3">CDMX (42%): Foco Corporativo Triple A</h6>
-                        <p class="text-white text-xl font-light opacity-80">Concentración de tesorerías públicas y privadas. El contenido aquí debe ser de "Alta Consultoría" y visión de mercado global.</p>
+                        <h6 class="font-bold text-yellow text-2xl mb-3">CDMX (42%): El Hub Financiero</h6>
+                        <p class="text-white text-xl font-light opacity-80">Concentración de CFOs de corporativos Triple A. El podcast debe ser técnico, con invitados regulatorios y visión de mercado global.</p>
                     </div>
                     <div class="border-l-4 border-white pl-10">
-                        <h6 class="font-bold text-white text-2xl mb-3">NUEVO LEÓN (30%): Foco Industrial Fronterizo</h6>
-                        <p class="text-white text-xl font-light opacity-80">Interés masivo en Supply Chain Finance. Episodios clave: Logística, manufactura pesada y exportación hacia EE.UU.</p>
+                        <h6 class="font-bold text-white text-2xl mb-3">NUEVO LEÓN (30%): Industria Pesada</h6>
+                        <p class="text-white text-xl font-light opacity-80">Enfoque total en manufactura y Nearshoring. Aquí el contenido debe resaltar la eficiencia en la cadena de suministro fronteriza.</p>
                     </div>
                     <div class="border-l-4 border-yellow pl-10">
-                        <h6 class="font-bold text-yellow text-2xl mb-3">JALISCO (18%): El Hub del Agro-Tech</h6>
-                        <p class="text-white text-xl font-light opacity-80">Oportunidad única en factoraje agrícola y sector servicios B2B. Contenido: Ciclos de cosecha y exportación de software.</p>
+                        <h6 class="font-bold text-yellow text-2xl mb-3">JALISCO (18%): Agro-Tech & Software</h6>
+                        <p class="text-white text-xl font-light opacity-80">Oportunidad en micro-factoraje para servicios B2B y ciclos de cosecha agrícola dinámicos.</p>
                     </div>
                 </div>
             </div>
@@ -308,13 +312,13 @@
                     <h2 class="text-4xl font-bold italic uppercase">05-B. Editorial Mix Recomendado</h2>
                 </div>
                 <div class="interpretation-guide">
-                    <p class="text-white opacity-90 leading-loose">Guía de producción anual. Esta mezcla garantiza que la audiencia aprenda (autoridad) pero también se convenza (casos reales).</p>
+                    <p class="text-white opacity-90 leading-loose">Mezcla sugerida para mantener la autoridad institucional sin perder el interés de la audiencia técnica.</p>
                 </div>
                 <div class="card-noir h-[500px] flex flex-col justify-center">
                     <canvas id="donutMix"></canvas>
                 </div>
                 <div class="insight-box">
-                    <p class="text-white text-xl font-light italic">Recomendación Midium: El 40% del esfuerzo debe ser "Historias de Éxito". En el sector financiero, el testimonio de un par que superó una crisis de flujo es 10 veces más persuasivo que cualquier explicación técnica.</p>
+                    <p class="text-white text-xl font-light italic">Recomendación: El 40% del contenido DEBE enfocarse en Casos de Éxito. En finanzas, la evidencia de un par resolviendo un problema es el factor número uno de conversión.</p>
                 </div>
             </div>
         </section>
@@ -326,73 +330,103 @@
             </div>
 
             <div class="card-noir border-yellow">
-                <h3 class="text-4xl font-bold italic mb-16 uppercase text-yellow">06-A. Matriz de Resiliencia (10 Puntos de PR)</h3>
+                <h3 class="text-4xl font-bold italic mb-16 uppercase text-yellow">06-A. Matriz de Resiliencia (Manejo de Objeciones)</h3>
                 <div class="interpretation-guide mb-16">
-                    <p class="text-white opacity-90 leading-loose">Protocolo de respuesta ante críticas comunes en redes sociales y foros financieros. El podcast debe integrar estos puentes narrativos orgánicamente en sus diálogos.</p>
+                    <p class="text-white opacity-90 leading-loose">Protocolo de respuesta ante críticas del mercado. Estas son las "balas de plata" narrativas que el podcast debe integrar para neutralizar la fricción de venta.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <!-- 1-10 -->
+                    <!-- 1-10 Matriz Resiliencia -->
                     <div class="p-8 bg-black border border-white/20 hover:border-yellow transition">
                         <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">01. Crítica: "Es un costo muy alto"</p>
                         <p class="text-white text-xl italic font-light leading-relaxed">"Puente: Es el seguro de crecimiento. Perder un pedido millonario por falta de flujo es infinitamente más costoso que la tasa del factoraje."</p>
                     </div>
                     <div class="p-8 bg-black border border-white/20 hover:border-yellow transition">
-                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">02. Crítica: "Señal de debilidad financiera"</p>
-                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: Al contrario, solo las empresas con activos reales (facturas Triple A) pueden usarlo. Es señal de que grandes empresas confían en ti."</p>
+                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">02. Crítica: "Es señal de quiebra"</p>
+                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: Al contrario, solo empresas con activos reales (facturas Triple A) pueden usarlo. Es señal de que grandes empresas confían en ti."</p>
                     </div>
                     <div class="p-8 bg-black border border-white/20 hover:border-yellow transition">
-                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">03. Crítica: "Afecta mi relación con el cliente"</p>
-                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: El factoraje profesional de AMEFAC da certeza y orden institucional a la cadena de cobro, formalizando positivamente la relación."</p>
+                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">03. Crítica: "Daña la relación con mi cliente"</p>
+                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: El factoraje profesional de AMEFAC da certeza y orden institucional a la cadena de cobro, formalizando la relación comercial."</p>
                     </div>
                     <div class="p-8 bg-black border border-white/20 hover:border-yellow transition">
-                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">04. Crítica: "Es un proceso burocrático"</p>
-                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: La digitalización reduce el onboarding a horas. Si tienes un XML válido, tienes capital inmediato."</p>
+                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">04. Crítica: "Burocracia insoportable"</p>
+                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: La digitalización reduce el proceso a horas. Si tienes un XML válido del SAT, tienes capital disponible de inmediato."</p>
                     </div>
                     <div class="p-8 bg-black border border-white/20 hover:border-yellow transition">
                         <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">05. Crítica: "Prefiero esperar el pago natural"</p>
-                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: Esperar 90 días es regalarle un crédito sin intereses a tu cliente con tu propio capital de trabajo. No seas el banco de tu comprador."</p>
+                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: Esperar 90 días es regalarle un crédito sin intereses a tu cliente usando tu propio capital de trabajo. No seas el banco de tu comprador."</p>
                     </div>
                     <div class="p-8 bg-black border border-white/20 hover:border-yellow transition">
-                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">06. Crítica: "El banco tiene mejor tasa"</p>
-                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: El banco pide hipotecas y congela tu capacidad de crédito. El factoraje es escalable e ilimitado según tus ventas."</p>
+                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">06. Crítica: "El banco es más barato"</p>
+                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: El banco pide hipotecas y congela tus activos. El factoraje es escalable e ilimitado según tus ventas, no según tu historial hipotecario."</p>
                     </div>
                     <div class="p-8 bg-black border border-white/20 hover:border-yellow transition">
                         <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">07. Crítica: "Solo es para grandes corporativos"</p>
                         <p class="text-white text-xl italic font-light leading-relaxed">"Puente: AMEFAC democratiza el capital. El factoraje es hoy la herramienta de inclusión financiera más potente para la PyME mexicana."</p>
                     </div>
                     <div class="p-8 bg-black border border-white/20 hover:border-yellow transition">
-                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">08. Crítica: "Miedo al fraude de facturas"</p>
-                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: Operamos bajo estándares de validación XML del SAT y transparencia institucional de AMEFAC. Seguridad total para ambas partes."</p>
+                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">08. Crítica: "Riesgo de fraude de facturas"</p>
+                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: Operamos bajo validación XML estricta y transparencia institucional de AMEFAC. Seguridad total para el emisor y el pagador."</p>
                     </div>
                     <div class="p-8 bg-black border border-white/20 hover:border-yellow transition">
-                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">09. Crítica: "Perderé el control de mis cobranzas"</p>
-                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: Te da control sobre el tiempo. Tú decides cuándo quieres cobrar en lugar de estar a merced del calendario del comprador."</p>
+                        <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">09. Crítica: "Me quita control de cobranza"</p>
+                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: Te da control sobre el tiempo. Tú decides cuándo cobrar en lugar de estar a merced del calendario financiero del comprador."</p>
                     </div>
                     <div class="p-8 bg-black border border-white/20 hover:border-yellow transition">
                         <p class="text-red-500 font-bold text-sm uppercase mb-4 tracking-widest">10. Crítica: "Es fiscalmente complejo"</p>
-                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: El factoraje electrónico es el mejor aliado del cumplimiento fiscal. Todo el flujo está documentado bajo normativa vigente."</p>
+                        <p class="text-white text-xl italic font-light leading-relaxed">"Puente: El factoraje electrónico es el mejor aliado del cumplimiento fiscal. Todo el flujo está documentado bajo normativa SAT vigente."</p>
                     </div>
                 </div>
             </div>
 
             <div class="space-y-16">
-                <h3 class="text-4xl font-bold italic uppercase">06-B. Distribución Multi-Plataforma</h3>
+                <h3 class="text-4xl font-bold italic uppercase">06-B. Ecosistema de Distribución Transmedia</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                     <div class="card-noir border-white/10 p-12 hover:bg-zinc-950 transition">
                         <i class="fab fa-linkedin text-6xl text-yellow mb-10"></i>
-                        <h5 class="text-2xl font-bold italic mb-6">LinkedIn Strategy: Thought Leadership</h5>
-                        <p class="text-white text-lg font-light leading-relaxed opacity-90"><strong>Objetivo:</strong> Convertir al CFO en estratega de liquidez. <br><br><strong>Táctica:</strong> Fragmentos de video de 3-5 min enfocados en optimización de Capex y reportes de mercado industrial.</p>
+                        <h5 class="text-2xl font-bold italic mb-6">LinkedIn Thought Leadership</h5>
+                        <p class="text-white text-lg font-light leading-relaxed opacity-90"><strong>Estrategia:</strong> Posicionar al CFO como arquitecto de valor. <br><br><strong>Táctica:</strong> Fragmentos de video de 3-5 min enfocados en optimización de balances y reportes de mercado. <span class="text-green font-bold">+20% Engagement Delta.</span></p>
                     </div>
                     <div class="card-noir border-white/10 p-12 hover:bg-zinc-950 transition">
                         <i class="fab fa-tiktok text-6xl text-yellow mb-10"></i>
-                        <h5 class="text-2xl font-bold italic mb-6">TikTok/Reels: Financial Hacks</h5>
-                        <p class="text-white text-lg font-light leading-relaxed opacity-90"><strong>Objetivo:</strong> Romper mitos financieros en dueños de PyME. <br><br><strong>Táctica:</strong> Videos de 60s: "¿Cómo pagar nómina sin pedir un préstamo?". Ganchos rápidos de alto contraste visual.</p>
+                        <h5 class="text-2xl font-bold italic mb-6">TikTok / Reels: Fast Learning</h5>
+                        <p class="text-white text-lg font-light leading-relaxed opacity-90"><strong>Estrategia:</strong> Desmitificar el factoraje en dueños de PyME. <br><br><strong>Táctica:</strong> Videos de 60s: "¿Cómo pagar nómina hoy sin pedir un préstamo?". <span class="text-green font-bold">+45% Awareness Delta.</span></p>
                     </div>
                     <div class="card-noir border-white/10 p-12 hover:bg-zinc-950 transition">
                         <i class="fab fa-spotify text-6xl text-yellow mb-10"></i>
-                        <h5 class="text-2xl font-bold italic mb-6">Audio Podcast: Commute Learning</h5>
-                        <p class="text-white text-lg font-light leading-relaxed opacity-90"><strong>Objetivo:</strong> Acompañamiento en el trayecto ejecutivo. <br><br><strong>Táctica:</strong> Adaptación a formato audio 100% inmersivo. Entrevistas de profundidad sin distractores visuales.</p>
+                        <h5 class="text-2xl font-bold italic mb-6">Audio Inmersivo</h5>
+                        <p class="text-white text-lg font-light leading-relaxed opacity-90"><strong>Estrategia:</strong> Acompañamiento en el trayecto ejecutivo. <br><br><strong>Táctica:</strong> Adaptación total a formato audio para consumo en traslados, con foco en entrevistas de alta profundidad técnica. <span class="text-green font-bold">+15% Retention Delta.</span></p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Módulo 10: KPIs (North Star Metrics) con Deltas -->
+        <section id="kpis" class="card-noir p-24 text-center space-y-20 bg-zinc-950">
+            <div class="space-y-4">
+                <h2 class="text-6xl font-bold italic text-white uppercase tracking-widest">North Star Metrics</h2>
+                <p class="text-white font-light opacity-60 italic">Medición de impacto institucional vs Objetivos 2026</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-12">
+                <div class="space-y-4">
+                    <p class="text-7xl font-bold text-yellow leading-none">94% <span class="delta-indicator text-green">+4%</span></p>
+                    <p class="text-[14px] font-black uppercase tracking-widest text-white">Retention Rate</p>
+                    <p class="text-[11px] opacity-40 italic font-bold uppercase">Engagement técnico</p>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-7xl font-bold text-yellow leading-none">+25% <span class="delta-indicator text-green">+8%</span></p>
+                    <p class="text-[14px] font-black uppercase tracking-widest text-white">Sentiment Shift</p>
+                    <p class="text-[11px] opacity-40 italic font-bold uppercase">Mejora de percepción</p>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-7xl font-bold text-yellow leading-none">18k <span class="delta-indicator text-green">+2k</span></p>
+                    <p class="text-[14px] font-black uppercase tracking-widest text-white">Monthly Leads</p>
+                    <p class="text-[11px] opacity-40 italic font-bold uppercase">Descargas directas</p>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-7xl font-bold text-yellow leading-none">14x <span class="delta-indicator text-red">-1.2x</span></p>
+                    <p class="text-[14px] font-black uppercase tracking-widest text-white">Authority Index</p>
+                    <p class="text-[11px] opacity-40 italic font-bold uppercase">Presencia en medios</p>
                 </div>
             </div>
         </section>
@@ -408,7 +442,7 @@
                     <p class="text-[18px] uppercase tracking-[1.2em] font-black text-white">
                         <a href="https://www.midium.mx" target="_blank" class="midium-link">MIDIUM AGENCIA CREATIVA</a>
                     </p>
-                    <p class="text-[12px] opacity-40 tracking-[0.6em] uppercase font-bold italic text-white">Estrategia Basada en Datos x AMEFAC • 2026</p>
+                    <p class="text-[12px] opacity-40 tracking-[0.6em] uppercase font-bold italic text-white">Estrategia de Datos x AMEFAC • 2026</p>
                 </div>
             </div>
         </div>
@@ -420,8 +454,8 @@
             { k: "Factoraje financiero", cl: "CORE AUTHORITY", se: 0.90, tr: "up", gi: "El factoraje como estándar de eficiencia operativa." },
             { k: "Liquidez PyME", cl: "OPERATIONS", se: -0.65, tr: "up", gi: "Transformación de la asfixia al flujo libre de capital." },
             { k: "Nearshoring", cl: "MARKET BOOM", se: 0.95, tr: "up", gi: "Financiando la infraestructura del nuevo México." },
-            { k: "CFO México", cl: "PERSONA", se: 0.70, tr: "up", gi: "El nuevo rol del liderazgo financiero institucional." },
-            { k: "Crédito Bancario", cl: "COMPETITOR", se: -0.75, tr: "stable", gi: "Diferenciador: Por qué el crédito frena y el factoraje libera." },
+            { k: "CFO México", cl: "PERSONA", se: 0.72, tr: "up", gi: "El nuevo rol del liderazgo financiero institucional." },
+            { k: "Crédito Bancario", cl: "COMPETITOR", se: -0.75, tr: "stable", gi: "Por qué el crédito frena y el factoraje libera." },
             { k: "Cuentas por cobrar", cl: "STRATEGY", se: 0.45, tr: "up", gi: "Tu activo más valioso convertido en efectivo inmediato." },
             { k: "Fintech B2B", cl: "INNOVATION", se: 0.82, tr: "up", gi: "La digitalización de la liquidez: Más allá del papel." },
             { k: "Tasa de interés", cl: "MACRO", se: -0.85, tr: "stable", gi: "Protegiendo el margen operativo en entornos volátiles." },
@@ -444,13 +478,13 @@
                     <td>
                         <div class="flex items-center space-x-6">
                             <div class="w-32 h-2 bg-zinc-800 rounded-full overflow-hidden">
-                                <div class="h-full ${item.se > 0 ? 'bg-yellow' : 'bg-red-600'}" style="width: ${Math.abs(item.se * 100)}%"></div>
+                                <div class="h-full ${item.se > 0 ? 'bg-green-500' : 'bg-red-600'}" style="width: ${Math.abs(item.se * 100)}%"></div>
                             </div>
-                            <span class="text-sm font-bold text-white tracking-widest">${item.se}</span>
+                            <span class="text-sm font-bold ${item.se > 0 ? 'text-green-500' : 'text-red-500'} tracking-widest">${item.se}</span>
                         </div>
                     </td>
                     <td class="text-center">
-                        <i class="fas fa-caret-${item.tr === 'up' ? 'up text-yellow' : 'right text-white/40'} text-2xl"></i>
+                        <i class="fas fa-caret-${item.tr === 'up' ? 'up text-green-500' : 'right text-white/40'} text-2xl"></i>
                     </td>
                     <td class="text-[14px] font-light italic opacity-90 leading-relaxed text-white">${item.gi}</td>
                 </tr>`;
@@ -492,7 +526,7 @@
                 }
             });
 
-            // M02-B: Line Interest
+            // M02-B: Line Interest con Deltas proyectados
             new Chart(document.getElementById('lineInterest'), {
                 type: 'line',
                 data: {
@@ -501,8 +535,8 @@
                         {
                             label: 'Factoraje AMEFAC',
                             data: [40, 48, 62, 85, 98, 125],
-                            borderColor: '#facc15',
-                            backgroundColor: 'rgba(250, 204, 21, 0.1)',
+                            borderColor: '#22c55e',
+                            backgroundColor: 'rgba(34, 197, 94, 0.1)',
                             fill: true,
                             tension: 0.4,
                             borderWidth: 6
@@ -510,7 +544,7 @@
                         {
                             label: 'Banca Tradicional',
                             data: [85, 80, 75, 70, 68, 65],
-                            borderColor: '#ffffff',
+                            borderColor: '#ef4444',
                             borderDash: [10, 5],
                             fill: false,
                             tension: 0.4,
